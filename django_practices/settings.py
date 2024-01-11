@@ -45,8 +45,12 @@ INSTALLED_APPS = [
 
     # app
     "account.apps.AccountConfig",
+    "blog.apps.BlogConfig",
 
     # 3rd-party
+    "crispy_forms",
+    "debug_toolbar",
+    "crispy_bootstrap4",
 
     # package
     "whitenoise.runserver_nostatic",
@@ -64,6 +68,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     # package
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "django_practices.urls"
@@ -149,3 +154,10 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# debug_toolbar
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
