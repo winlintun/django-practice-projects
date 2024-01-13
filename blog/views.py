@@ -1,9 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.views import generic
 from .models import Post, Tag, Category
-from .forms import CommentForm, WritePost
-from django.urls import reverse_lazy, reverse
+from .forms import CommentForm
+from django.urls import reverse, reverse_lazy
 from django.utils.text import slugify
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class PostListView(generic.ListView):
@@ -27,41 +28,12 @@ class PostDetailView(generic.DetailView, generic.edit.FormMixin):
         post.save()
         return post
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['comments'] = self.object.comments.filter(active=True)
-    #
-    #     if self.request.method == "POST":
-    #         context['comment_form'] = CommentForm(data=self.request.POST)
-    #     else:
-    #         context['comment_form'] = CommentForm()
-    #         context['new_comment'] = self.object.comments.filter(active=False).order_by("-created_on")[:1]
-    #
-    #     return context
-    #
-    # def get_success_url(self) -> str:
-    #     return reverse("blog:detail", kwargs={"slug": self.object.slug})
-    #
-    # def post(self, request, *args, **kwargs):
-    #     self.object = self.get_object()
-    #     form = self.get_form()
-    #
-    #     if form.is_valid():
-    #         return self.form_valid(form)
-    #     else:
-    #         return self.form_invalid(form)
-    #
-    # def form_valid(self, form):
-    #     new_comment = form.save(commit=False)
-    #     new_comment.post = self.object
-    #     new_comment.save()
-    #     return super().form_valid(form)
 
-
-class PostUploadView(generic.CreateView):
+class PostUploadView(LoginRequiredMixin, generic.CreateView):
     model = Post
     fields = ["title", "content", "image", "categories", "tags", "status"]
     template_name = "blog/form.html"
+    login_url = reverse_lazy("account:login")
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -72,13 +44,20 @@ class PostUploadView(generic.CreateView):
         return reverse("blog:home")
 
 
-def tag(request, name):
+def explorer(request, name):
+    data = None
+    if Tag.objects.all().filter(name=name):
+        data = Tag.objects.get(name=name)
+    elif Category.objects.all().filter(name=name):
+        data = Category.objects.get(name=name)
+
     return render(request, "blog/tag_content.html", {
-        "data": Tag.objects.get(name=name),
+        "data": data,
     })
 
 
-def category(request, name):
-    return render(request, "blog/tag_content.html", {
-        "data": Category.objects.get(name=name),
-    })
+class PostUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Post
+    fields = ["title", "content", "author", "image", "categories", "tags", "status"]
+    context_object_name = "blog"
+    template_name = "blog/blog_update.html"

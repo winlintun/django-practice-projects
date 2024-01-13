@@ -8,7 +8,5 @@ urlpatterns = [
     path("", views.PostListView.as_view(), name="home"),
     path("detail/<slug:slug>/", views.PostDetailView.as_view(), name="detail"),
     path("create/", views.PostUploadView.as_view(), name="create"),
-    path("categories/<str:name>/", views.category, name="category"),
-    path("tags/<str:name>/", views.tag, name="tag"),
-
+    path("tags-categories/<str:name>/", views.explorer, name="display"),
 ]

@@ -41,7 +41,7 @@
                                     <h3>Categories</h3>
                                     {% for blog in blog_list %}
                                         {% for category in blog.categories.all %}
-                                        <a href="{% url 'blog:category' category %}" class="btn {% cycle 'btn-outline-primary' 'btn-outline-secondary' 'btn-outline-success' 'btn-outline-danger' 'btn-outline-warning' 'btn-outline-info' 'btn-outline-dark' %} btn-sm">{{ category|slice:"1:2" }}</a>
+                                        <a href="{% url 'blog:display' category %}" class="btn {% cycle 'btn-outline-primary' 'btn-outline-secondary' 'btn-outline-success' 'btn-outline-danger' 'btn-outline-warning' 'btn-outline-info' 'btn-outline-dark' %} btn-sm">{{ category|slice:"1:2" }}</a>
                                         {% endfor %}
                                     {% endfor %}
                                 </small>
@@ -56,7 +56,7 @@
                                 <small class="text-body-secondary">
                                     {% for blog in blog_list %}
                                         {% for tag in blog.tags.all %}
-                                        <a href="{% url 'blog:tag' tag %}" class="btn {% cycle 'btn-outline-primary' 'btn-outline-secondary' 'btn-outline-success' 'btn-outline-danger' 'btn-outline-warning' 'btn-outline-info' 'btn-outline-dark' %} btn-sm">{{ tag|slice:"1:2" }}</a>
+                                        <a href="{% url 'blog:display' tag %}" class="btn {% cycle 'btn-outline-primary' 'btn-outline-secondary' 'btn-outline-success' 'btn-outline-danger' 'btn-outline-warning' 'btn-outline-info' 'btn-outline-dark' %} btn-sm">{{ tag|slice:"1:2" }}</a>
                                         {% endfor %}
                                     {% endfor %}
                                 </small>
