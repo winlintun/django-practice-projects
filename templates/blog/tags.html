@@ -2,7 +2,7 @@
 <p class="card-text">
     <small class="text-body-secondary">
         {% for tag in blog.tags.all %}
-        <a href="#" class="btn {% cycle 'btn-outline-primary' 'btn-outline-secondary' 'btn-outline-success' 'btn-outline-danger' 'btn-outline-warning' 'btn-outline-info' 'btn-outline-dark' %} btn-sm">{{ tag|slice:"1:2" }}</a>
+        <a href="{% url 'blog:tag' tag %}" class="btn {% cycle 'btn-outline-primary' 'btn-outline-secondary' 'btn-outline-success' 'btn-outline-danger' 'btn-outline-warning' 'btn-outline-info' 'btn-outline-dark' %} btn-sm">{{ tag|slice:"1:2" }}</a>
         {% endfor %}
     </small>
     <small class="text-body-secondary mx-3">{{ blog.content|readtime}}</small>

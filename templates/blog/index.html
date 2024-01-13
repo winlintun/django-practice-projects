@@ -30,16 +30,73 @@
             </div>
             {% endfor %}
         </div>
-        <div class="col-lg-4 col-sm-12 border position-relative">
-            <div class="">
-                  Category list here
-                Category list here
-                Category list here
-                Category list here
-                Category list here
-                Category list here
-            </div>
+        <div class="col-lg-4 col-sm-12 border">
+            <div class="left" style="position: relative;height: 100%;display: inline-block;width: 100%;">
+                <div class="inner" style="top: 101px;position: sticky;margin-top: 0px;">
+                    <!-- Category -->
+                    <div class="container mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <small class="text-body-secondary">
+                                    <h3>Categories</h3>
+                                    {% for blog in blog_list %}
+                                        {% for category in blog.categories.all %}
+                                        <a href="{% url 'blog:category' category %}" class="btn {% cycle 'btn-outline-primary' 'btn-outline-secondary' 'btn-outline-success' 'btn-outline-danger' 'btn-outline-warning' 'btn-outline-info' 'btn-outline-dark' %} btn-sm">{{ category|slice:"1:2" }}</a>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tag list -->
+                    <div class="container mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <h3>Tag</h3>
+                                <small class="text-body-secondary">
+                                    {% for blog in blog_list %}
+                                        {% for tag in blog.tags.all %}
+                                        <a href="{% url 'blog:tag' tag %}" class="btn {% cycle 'btn-outline-primary' 'btn-outline-secondary' 'btn-outline-success' 'btn-outline-danger' 'btn-outline-warning' 'btn-outline-info' 'btn-outline-dark' %} btn-sm">{{ tag|slice:"1:2" }}</a>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Top blog post -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <h3>Top Related Posts</h3>
+                                <small class="text-body-secondary">
+                                    {% for blog in blog_list %}
+                                        {% if forloop.counter < 6 %}
+                                        <a href="{% url 'blog:detail' blog.slug %}" class="link" style="text-decoration: none;color: black;cursor: pointer;">
+                                        <div class="card">
+                                          <div class="card-body">
+                                            <h5 class="card-title">{{blog.title}}</h5>
+                                            <p class="card-text">{{ blog.content | truncatewords:5 }}</p>
+                                          </div>
+                                        </div>
+                                        </a>
+                                        {% endif %}
+                                    {% endfor %}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
 
+                <div class="container mt-5 mb-2">
+                  <div class="copyright">
+                    © Copyright <strong><span>winlintun</span></strong>
+                  </div>
+                  <div class="credits">
+                    Copy Designed by <a href="https://medium.com/">Medium</a>
+                  </div>
+                </div>
+
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

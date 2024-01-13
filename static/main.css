@@ -8,3 +8,17 @@
 line-height: 2;
 
 }
+
+.left {
+   position: relative;
+   height: 100%;
+   display: inline-block;
+   width: 100%;
+
+}
+
+.inner {
+    top: 101px;
+      position: sticky;
+      margin-top: 0px;
+}

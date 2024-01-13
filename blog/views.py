@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import generic
-from .models import Post
-from .forms import CommentForm
-from django.urls import reverse
+from .models import Post, Tag, Category
+from .forms import CommentForm, WritePost
+from django.urls import reverse_lazy, reverse
+from django.utils.text import slugify
 
 
 class PostListView(generic.ListView):
@@ -55,3 +56,29 @@ class PostDetailView(generic.DetailView, generic.edit.FormMixin):
     #     new_comment.post = self.object
     #     new_comment.save()
     #     return super().form_valid(form)
+
+
+class PostUploadView(generic.CreateView):
+    model = Post
+    fields = ["title", "content", "image", "categories", "tags", "status"]
+    template_name = "blog/form.html"
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.instance.slug = slugify(self.request.POST['title'])
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse("blog:home")
+
+
+def tag(request, name):
+    return render(request, "blog/tag_content.html", {
+        "data": Tag.objects.get(name=name),
+    })
+
+
+def category(request, name):
+    return render(request, "blog/tag_content.html", {
+        "data": Category.objects.get(name=name),
+    })

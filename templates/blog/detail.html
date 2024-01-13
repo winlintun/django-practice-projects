@@ -5,7 +5,7 @@
 
 {% block content %}
     <div class="row mt-5">
-        <div class="col-lg-8 col-sm-12">
+        <div class="col-lg-12 col-sm-12">
             <div class="container-fluid">
                 {% if post.image %}
                 <div class="row mb-5">
@@ -17,6 +17,7 @@
                 <div class="row">
                     <div class="col">
                         <h1>{{ post.title|title }}</h1>
+                        <p>{{post.count}} views</p>
                     </div>
                 </div>
                 <div class="row">
@@ -25,23 +26,12 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-10">
-                        <p class="text" style="line-height: 2;">{{ post.content }}</p>
+                    <div class="col-lg-12">
+                        <p class="text" style="line-height: 2; font-size: 1.5rem">{{ post.content }}</p>
                     </div>
                     <div class="col-lg-2"></div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-4 col-sm-12 border position-relative">
-            <div class="">
-                  Category list here
-                Category list here
-                Category list here
-                Category list here
-                Category list here
-                Category list here
-            </div>
-
         </div>
     </div>
 {% endblock %}
