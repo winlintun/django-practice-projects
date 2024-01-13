@@ -61,3 +61,18 @@ class PostUpdateView(LoginRequiredMixin, generic.UpdateView):
     fields = ["title", "content", "author", "image", "categories", "tags", "status"]
     context_object_name = "blog"
     template_name = "blog/blog_update.html"
+
+
+class PostDeleteView(LoginRequiredMixin, generic.edit.DeleteView):
+    model = Post
+    template_name = "blog/delete.html"
+    success_url = reverse_lazy("blog:home")
+
+
+class PostUpdateView(LoginRequiredMixin, generic.edit.UpdateView):
+    model = Post
+    fields = ["title", "content", "author", "image", "categories", "tags", "status"]
+    template_name = "blog/update.html"
+    success_url = reverse_lazy("blog:home")
+
+
