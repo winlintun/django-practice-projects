@@ -11,5 +11,5 @@ urlpatterns = [
     path("tags-categories/<str:name>/", views.explorer, name="display"),
     path("<slug:slug>/delete/", views.PostDeleteView.as_view(), name="delete"),
     path("<slug:slug>/update/", views.PostUpdateView.as_view(), name="update"),
-
+    path("search/", views.PostSearchView.as_view(), name="search"),
 ]

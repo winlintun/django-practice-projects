@@ -5,6 +5,7 @@ from .forms import CommentForm
 from django.urls import reverse, reverse_lazy
 from django.utils.text import slugify
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 
 
 class PostListView(generic.ListView):
@@ -75,4 +76,13 @@ class PostUpdateView(LoginRequiredMixin, generic.edit.UpdateView):
     template_name = "blog/update.html"
     success_url = reverse_lazy("blog:home")
 
+
+class PostSearchView(generic.ListView):
+    model = Post
+    template_name = "blog/search.html"
+    context_object_name = "post_list"
+
+    def get_queryset(self):
+        query = self.request.GET['q']
+        return Post.objects.filter(Q(title__icontains=query) | Q(content__icontains=query))
 
