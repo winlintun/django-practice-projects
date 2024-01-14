@@ -28,10 +28,12 @@
                 </div>
                 {% if request.user.is_authenticated %}
                 <div class="row">
+                    {% if request.user.username == post.author.username %}
                     <div class="col">
                         <a class="btn btn-sm btn-info" href="{% url 'blog:update' post.slug %}">Update</a>
                         <a class="btn btn-sm btn-danger" href="{% url 'blog:delete' post.slug %}">Delete</a>
                     </div>
+                    {% endif %}
                 </div>
                 {% endif %}
                 <div class="row">
