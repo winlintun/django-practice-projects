@@ -1,0 +1,496 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Portfolio Home
+{% endblock %}
+
+{% block content %}
+    <header class="header">
+      <nav class="nav-group">
+        <div class="logo">
+            <a href="/" style="text-decoration: none;color: inherit;">My Portfolio</a>
+        </div>
+        <ul class="nav">
+          <li class="nav-list">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+          <li class="nav-list">
+            <a class="nav-link" href="#work">Work</a>
+          </li>
+          <li class="nav-list">
+            <a class="nav-link" href="#exp">My Experience</a>
+          </li>
+          <li class="nav-list">
+            <a class="nav-link" href="#blog">Blog</a>
+          </li>
+          <li class="nav-list">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+    <!-- Hero Section -->
+    <section class="section-hero">
+        <div class="hero">
+            <div class="hero-text-box">
+                <span class="sub-heading">
+                    My Name is <span class="my-name">{{ user.first_name }} {{user.last_name }}</span>
+                </span>
+                <h1 class="heading-primary">
+                    I am {{ user.profile.position }}
+                </h1>
+                <p class="hero-description">
+                    {{ user.profile.description }}
+                </p>
+                {% if user.profile.cv_file %}
+                <a href="{{ user.profile.cv_file.url }}" class="btn btn-full" download="{{ user.profile.cv_file.url }}" target="_blank">Download CV &Darr;</a>
+                {% endif %}
+            </div>
+            <div class="hero-img-box">
+                <picture>
+                    <source srcset="{{ user.profile.image.url }}" type="image/webp">
+                    <source srcset="{{ user.profile.image.url }}" type="image/jpg">
+                    <img class="img-hero" src="{{ user.profile.image.url }}" alt="My Picture">
+                </picture>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section-about" id="about">
+        <div class="container">
+            <h2 class="heading-secondary-samll-section">
+                Who I Am
+            </h2>
+        </div>
+        <div class="container grid grid--about">
+            <p class="bio-desc">
+                <span>My name is {{ user.first_name }} {{user.last_name }}. I'm {{ user.profile.position }}</span>
+                 {{ user.profile.description }}
+            </p>
+            <div class="bio-list">
+                <ul>
+                    <li class="bio-list-li ">
+                        <p>Name :</p>
+                        <p>{{ user.first_name }} {{user.last_name }}</p>
+                    </li>
+                    <li class="bio-list-li ">
+                        <p>Email :</p>
+                        <a href="mailto:www.iceface@gmail.com">{{ user.email }}</a>
+                    </li>
+                    <li class="bio-list-li ">
+                        <p>Age :</p>
+                        <p>12/5/1998</p>
+                    </li>
+                    <li class="bio-list-li ">
+                        <p>From :</p>
+                        <address>
+                            Yangon, Myanmar.
+                        </address>
+                    </li>
+                </ul>
+                {% if user.profile.cv_file %}
+                <a href="{{ user.profile.cv_file.url }}" class="btn btn-full">Download CV &Darr;</a>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <!-- My Skill - what i do section-->
+    <section class="section-what-i-do">
+        <div class="container">
+            <h2 class="heading-secondary heading-center">
+                <span class="heading-underline">What I Do</span>
+            </h2>
+        </div>
+        <div class="container what-i-do-contents grid-what-i-do grid--2--col">
+            <div class="what-i-do-group">
+                <div class="what-i-do-icon">
+                    <i class="fa-solid fa-palette"></i>
+                </div>
+                <div class="what-i-do-content">
+                    <h3 class="sub-heading">Graphic Design</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, libero maxime? Nihil atque molestiae placeat officia, distinctio </p>
+                </div>
+            </div>
+            <div class="what-i-do-group">
+                <div class="what-i-do-icon">
+                    <i class="fa-solid fa-icons"></i>
+                </div>
+                <div class="what-i-do-content">
+                    <h3 class="sub-heading">UN/UX Design</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, libero maxime? Nihil atque molestiae placeat officia</p>
+                </div>
+            </div>
+            <div class="what-i-do-group">
+                <div class="what-i-do-icon">
+                    <i class="fa-solid fa-globe"></i>
+                </div>
+                <div class="what-i-do-content">
+                    <h3 class="sub-heading">Backend Develop</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, libero maxime? Nihil atque molestiae placeat officia</p>
+                </div>
+            </div>
+            <div class="what-i-do-group">
+                <div class="what-i-do-icon">
+                    <i class="fa-solid fa-database"></i>
+                </div>
+                <div class="what-i-do-content">
+                    <h3 class="sub-heading">DataBase Engineering</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, libero maxime? Nihil atque molestiae placeat officia</p>
+                </div>
+            </div>
+            <div class="what-i-do-group">
+                <div class="what-i-do-icon">
+                    <i class="fa-solid fa-circle-nodes"></i>
+                </div>
+                <div class="what-i-do-content">
+                    <h3 class="sub-heading">API Architecture</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, libero maxime? Nihil atque molestiae placeat officia</p>
+                </div>
+            </div>
+            <div class="what-i-do-group">
+                <div class="what-i-do-icon">
+                    <i class="fa-solid fa-mobile"></i>
+                </div>
+                <div class="what-i-do-content">
+                    <h3 class="sub-heading">Mobile Developing</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, libero maxime? Nihil atque molestiae placeat officia</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <h2 class="heading-secondary heading-center">
+                <span class="heading-underline">My Skill</span>
+            </h2>
+            <div class="circle-chart container grid grid--5--col">
+                {% for skill in user.myskill_set.all %}
+                <!-- Chart Group 1 html -->
+                <div class="circle-chart-group">
+                    <div class="chart">
+                        <div class="skill">
+                            <div class="outer">
+                              <div class="inner">
+                                <div id="number">
+                                    {{skill.level}} %
+                                </div>
+                              </div>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px">
+                              <defs>
+                                <linearGradient id="GradientColor">
+                                  <stop offset="0%" stop-color="#DA22FF" />
+                                  <stop offset="100%" stop-color="#9733EE" />
+                                </linearGradient>
+                              </defs>
+                              <circle cx="80" cy="80" r="70" stroke-linecap="round" />
+                            </svg>
+
+                        </div>
+                    </div>
+                    <p class="skill-name">{{ skill.name }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="container">
+            <h2 class="heading-secondary heading-center experience-title">
+                <span class="heading-underline">My Experiences</span>
+            </h2>
+        </div>
+        <div class="container grid-exp grid--4--col">
+            {% for exp in user.myexperience_set.all %}
+            <div class="experience-all">
+                <p class="exp-num">{{ exp.exp }}</p>
+                <p class="exp-title">Years Of <br>Experiences</p>
+            </div>
+            <div class="experience-all">
+                <p class="exp-num">{{ exp.complete_project }}</p>
+                <p class="exp-title">Complete <br>Projects</p>
+            </div>
+            <div class="experience-all">
+                <p class="exp-num">{{ exp.happy_customer }}</p>
+                <p class="exp-title">Happy <br>Customers</p>
+            </div>
+            <div class="experience-all">
+                <p class="exp-num">{{ exp.award }}</p>
+                <p class="exp-title">Awards <br>Won</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section class="section-work" id="work">
+        <div class="container">
+            <h2 class="heading-secondary heading-center">
+                <span class="heading-underline">My Works</span>
+            </h2>
+            <ul class="work-nav-ul">
+                <li class="work-nav-li">
+                    <a href="#" class="work-nav-link active">
+                        All Projects
+                    </a>
+                </li>
+                <li class="work-nav-li">
+                    <a href="#" class="work-nav-link">
+                        Training Projects
+                    </a>
+                </li>
+                <li class="work-nav-li">
+                    <a href="#" class="work-nav-link">
+                        My Projects - Website
+                    </a>
+                </li>
+                <li class="work-nav-li">
+                    <a href="#" class="work-nav-link">
+                        My Project - Web App
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="grid-project grid--5--col">
+          {% for work in user.mywork_set.all %}
+          <a href="#" style="text-decoration: none;cursor: pointer; color: #FBF8F5;">
+              <figure>
+                <img class="project-img" src="{{ work.image.url }}" alt="{{ work.title }}">
+                  <figcaption class="project-capt">
+                    {{ work.project_type }}
+                  </figcaption>
+              </figure>
+          </a>
+          {% endfor %}
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section-edu">
+      <div class="container">
+          <h2 class="heading-secondary">
+              My Education
+          </h2>
+      </div>
+      <div class="container grid grid--2--col">
+        {% for edu in user.myeducation_set.all %}
+        <!-- Basic Education -->
+        <div class="edu-group">
+          <div class="edu-icon">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div class="edu-contents">
+            <div class="edu-year">
+                {{ edu.start_date }} - {{ edu.end_date }}
+            </div>
+            <div class="edu-title">
+                {{ edu.title }}
+            </div>
+<!--            <div class="edu-desc">-->
+<!--              ....-->
+<!--            </div>-->
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Work Exp Section -->
+    <section class="section-exp" id="exp">
+      <div class="container">
+          <h2 class="heading-secondary">
+              My Experiences
+          </h2>
+      </div>
+      <div class="container grid grid--3--col">
+        {% for work in user.myworkingexperiences_set.all %}
+        <!-- Fist Exp -->
+        <div class="exp-group">
+          <div class="exp-icon">
+            <i class="fa-solid fa-briefcase"></i>
+          </div>
+          <div class="exp-contents">
+            <div class="exp-year">
+              {{ work.start_date }} - {{ work.end_date }}
+            </div>
+            <div class="my-exp-title">
+              {{ work.title }}
+            </div>
+            <div class="exp-desc">
+              position &mdash; {{ work.position }}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- My Skill - what i do section-->
+    <section class="section-testimonial">
+      <div class="container">
+          <h2 class="heading-secondary heading-center">
+              <span class="">Testimonial</span>
+          </h2>
+      </div>
+      <div class="container testimonial-contents grid-testimonial grid--2--col">
+          <div class="test-contents-all">
+            <div class="testimonial-group">
+              <div class="testimonial-photo">
+                  <img class="testimonial-img" src="{% static 'testimonial/test-1.jpeg' %}" alt="testimonial person">
+              </div>
+              <div class="testimonial-content">
+                  <p class="client-name">Stava Roja</p>
+                  <span class="position">CEO &mdash;Microsoft</span>
+              </div>
+
+            </div>
+            <div class="testmonial-desc">
+              <p class="test-desc">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, libero maxime? Nihil atque molestiae placeat officia, distinctio
+              </p>
+              <div class="rating-group">
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </div>
+            </div>
+          </div>
+          <div class="test-contents-all">
+            <div class="testimonial-group">
+              <div class="testimonial-photo">
+                  <img class="testimonial-img" src="{% static 'testimonial/test-2.webp' %}" alt="testimonial person">
+              </div>
+              <div class="testimonial-content">
+                  <p class="client-name">Stava Roja</p>
+                  <span class="position">CEO &mdash;Apple</span>
+              </div>
+
+            </div>
+            <div class="testmonial-desc">
+              <p class="test-desc">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, libero maxime? Nihil atque molestiae placeat officia, distinctio
+              </p>
+              <div class="rating-group">
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </div>
+            </div>
+          </div>
+      </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="section-blog" id="blog">
+      <div class="container">
+        <h2 class="heading-secondary heading-center">
+            <span class="">My Blogs</span>
+        </h2>
+      </div>
+    <div class="container grid grid--3--col">
+      {% for post in blogs %}
+          <div class="blog-group">
+            <a href="{% url 'blog:detail' post.slug %}" class="link" style="text-decoration: none;color: inherit;" target="_blank">
+                <div class="blog-image">
+                  <img class="blog-img" src="{{ post.image.url }}" alt="{{ post.title }}">
+                </div>
+                <div class="blog-contents">
+                  <h3 class="blog-title">
+                    {{ post.title }}
+                  </h3>
+                  <p class="blog-desc">
+                    {{ post.content | truncatewords:5 }}
+                  </p>
+                </div>
+            </a>
+          </div>
+      {% endfor %}
+    </div>
+    </section>
+
+    <!-- contact section-->
+    <section class="section-contact" id="contact">
+      <div class="container">
+        <h2 class="heading-secondary heading-center">
+            <span class="">Get In Touch</span>
+        </h2>
+      </div>
+      <div class="container grid grid-contact">
+        <div class="contact-group">
+         <h3 class="contact-title"> Don't Be Shy!</h3>
+         <p class="contact-desc">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates nostrum officiis neque quaerat laboriosam voluptas rem, ipsa sequi quibusdam maiores
+         </p>
+         <div class="mail-group">
+          <div class="mail-icon">
+            <i class="fa-solid fa-envelope"></i>
+          </div>
+          <div class="mail-contact">
+            <div class="mail-title">
+              Mail Me
+            </div>
+            <div class="mail">
+              <a href="mailto:www.iceface@gmail.com">www.iceface@gmail.com</a>
+            </div>
+          </div>
+         </div>
+         <div class="ph-group">
+          <div class="ph-icon">
+            <i class="fa-solid fa-phone"></i>
+          </div>
+          <div class="ph-contact">
+            <div class="ph-title">
+              Call Me
+            </div>
+            <div class="ph">
+              <a href="tel:+959255458532">+959255458532</a>
+            </div>
+          </div>
+         </div>
+         <ul class="social-group">
+          <li>
+            <a href="#" class="social-link">
+              <i class="fa-brands fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social-link">
+              <i class="fa-brands fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social-link">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social-link">
+              <i class="fa-brands fa-youtube"></i>
+            </a>
+          </li>
+
+        </ul>
+        </div>
+        <div class="input-group">
+          <form action="" class="form-input">
+            <div class="first-row">
+              <input type="text" placeholder="Your Nmae">
+              <input type="email" placeholder="Your Email">
+              <input type="text" placeholder="Your Subject">
+            </div>
+            <div class="second-row">
+              <textarea name="" id="" cols="30" rows="10"></textarea>
+            </div>
+            <div class="third-row">
+              <button type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    </main>
+{% endblock %}

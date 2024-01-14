@@ -1,10 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'blog/base.html' %}
 {% load crispy_forms_tags %}
 {% block title %}
     New Post Form
 {% endblock %}
 
 {% block content %}
+ <div class="container">
     <div class="row mt-5">
         <div class="col">
             <div class="container-fluid">
@@ -16,4 +17,5 @@
             </div>
         </div>
     </div>
+ </div>
 {% endblock %}

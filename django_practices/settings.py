@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # app
     "account.apps.AccountConfig",
     "blog.apps.BlogConfig",
+    "portfolio.apps.PortfolioConfig",
 
     # 3rd-party
     "crispy_forms",
@@ -57,6 +58,8 @@ INSTALLED_APPS = [
 
 ]
 
+LOGIN_REDIRECT_URL = "/blog/"
+LOGOUT_REDIRECT_URL = "/blog/login"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
