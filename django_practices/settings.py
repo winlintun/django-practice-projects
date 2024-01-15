@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "account.apps.AccountConfig",
     "blog.apps.BlogConfig",
     "portfolio.apps.PortfolioConfig",
+    "task.apps.TaskConfig",
 
     # 3rd-party
     "crispy_forms",
@@ -58,7 +59,7 @@ INSTALLED_APPS = [
 
 ]
 
-LOGIN_REDIRECT_URL = "/blog/"
+LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/blog/login"
 
 MIDDLEWARE = [

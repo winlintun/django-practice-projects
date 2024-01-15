@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Complete Task
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Task Completed</h2>
+
+    <div class="alert alert-success" role="alert">
+        The task "{{ task.title }}" has been successfully completed!
+    </div>
+
+    <a href="{% url 'task:home' %}" class="btn btn-primary">Back to Task List</a>
+</div>
+
+{% endblock %}
