@@ -20,18 +20,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 import debug_toolbar
 
-# from django.shortcuts import render
-# def home(request):
-#     return render(request, "index.html")
-
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("account/", include("account.urls")),
     path("blog/", include("blog.urls")),
     path("portfolio/", include("portfolio.urls")),
-    # path("", home),
     path("", include("task.urls")),
+    path("juice/", include("juice.urls")),
 
     # 3rd-party
     path("__debug__/", include(debug_toolbar.urls)),

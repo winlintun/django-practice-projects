@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+{% block title %}
+Cart View
+{% endblock %}
+
+{% block content %}
+
+    <div class="container mt-5">
+        <h2>Juice List</h2>
+
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Items in Cart</h3>
+                    {% for juice in order.juices.all %}
+                    <div class="card-mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ juice.name }}</h5>
+                            <p class="card-text">Price: $ {{juice.price}}</p>
+                            <form action="{% url 'juice:remove_cart' juice.slug %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Remove from Cart</button>
+                            </form>
+                        </div>
+                    </div>
+                    {% endfor %}
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Order Summary</h5>
+                        <p class="card-text">Total price: $ {{order.total_price}}</p>
+                        <a href="{% url 'juice:checkout' %}" class="btn btn-primary">Proceed to Checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "blog.apps.BlogConfig",
     "portfolio.apps.PortfolioConfig",
     "task.apps.TaskConfig",
+    "juice.apps.JuiceConfig",
 
     # 3rd-party
     "crispy_forms",

@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+{% block title %}
+Juice
+{% endblock %}
+
+{% block content %}
+
+    <div class="container mt-5">
+        <h2>Juice List</h2>
+
+        <div class="row">
+            {% for juice in juices  %}
+            <div class="col-md-4 md-4">
+                <div class="card">
+                    {% if juice.image %}
+                    <img src="{{juice.image.url}}" alt="">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ juice.name }}</h5>
+                        <p class="card-text">{{juice.description}}</p>
+                        <p class="card-text">$ {{juice.price}}</p>
+                        <form action="{% url 'juice:add_cart' juice.slug %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn btn-primary" type="submit">Add to Cart</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+{% endblock %}
